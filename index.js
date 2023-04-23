@@ -17,8 +17,8 @@ app.get('/', (req, res)=> {
 })
 
 console.log(process.env.CONNECTION_URL)
+//app.use('/.netlify/functions/getData', require('./routes/getData'))
 app.use('/getData', require('./routes/getData'))
-
 app.get('/enterData', async (req, res)=> {
     // let count = 0;
     // console.log('Entering Data \n')
