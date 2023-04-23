@@ -5,7 +5,7 @@ app.use(express.json())
 const userModel = require('./model/user')
 const userData = require('./data.js')
 require('dotenv').config();
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001
 //console.log(userData.length)
 userData.forEach((user)=> {
     user.income = Number(user.income.split("$")[1])
