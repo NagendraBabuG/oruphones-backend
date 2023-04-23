@@ -12,6 +12,9 @@ userData.forEach((user)=> {
 })
 //console.log(userData[0])
 mongoose.set('strictQuery', true)
+app.get('/', (req, res)=> {
+    res.send("Hello")
+})
 
 console.log(process.env.CONNECTION_URL)
 app.use('/getData', require('./routes/getData'))
