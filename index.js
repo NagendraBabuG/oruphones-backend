@@ -4,7 +4,7 @@ const app = express()
 app.use(express.json())
 const userModel = require('./model/user')
 //const userData = require('./data.js')
-//require('dotenv').config();
+require('dotenv').config();
 const PORT = process.env.PORT || 3001
 //console.log(userData.length)
 // userData.forEach((user)=> {
