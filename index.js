@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 const app = express()
 app.use(express.json())
 const userModel = require('./model/user')
-const userData = require('./data.js')
-require('dotenv').config();
+//const userData = require('./data.js')
+//require('dotenv').config();
 const PORT = process.env.PORT || 3001
 //console.log(userData.length)
-userData.forEach((user)=> {
-    user.income = Number(user.income.split("$")[1])
-})
+// userData.forEach((user)=> {
+//     user.income = Number(user.income.split("$")[1])
+// })
 //console.log(userData[0])
 mongoose.set('strictQuery', true)
 app.get('/', (req, res)=> {
@@ -33,7 +33,7 @@ app.get('/enterData', async (req, res)=> {
     if(!createUser) return res.json(400).json({status: 'error'})
     return res.status(200).json({status: 'success'})
 })
-
+console.log(process.env.CONNECTION_URL)
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on Port : ${PORT}`)
