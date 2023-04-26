@@ -91,7 +91,7 @@ router.get('/query4',middlewareCache, async (req, res)  => {
     })
     clientRedis.set('query4', JSON.stringify(result))
     console.log(result.length)
-    return res.status(400).json({status: 'success', data : result})
+    return res.status(200).json({status: 'success', data : result})
   }
   catch(error)
   {
