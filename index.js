@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-app.use(express.json())
+const cors = require('cors')
 const userModel = require('./model/user')
 //const userData = require('./data.js')
 require('dotenv').config();
 const PORT = process.env.PORT || 3001
+app.use(express.json())
+app.use(cors())
 //console.log(userData.length)
 // userData.forEach((user)=> {
 //     user.income = Number(user.income.split("$")[1])
