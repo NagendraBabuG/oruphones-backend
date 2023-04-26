@@ -6,12 +6,14 @@ const userModel = require('../model/user')
 const router = express.Router()
 const clientRedis = require('../clientRedis')
 const middlewareCache = async (req, res, next) => {
-  const { key } = req.params;
+  const { key } = req.query;
+  console.log(key)
   if (key === undefined) {
     next();
   } else {
     try {
-      const data = await redisClient.get(key);
+      const data = await clientRedis.get(key);
+      //console.log('data in cache ', data)
       if (data !== null) {
         console.log('using redis');
         return res.status(200).json({ status: 'success', data: JSON.parse(data) });
@@ -115,8 +117,8 @@ router.get('/query5',middlewareCache, async (req, res) => {
         $limit: 10 // Limit the result to top 10 cities
       }
     ])
-    clientRedis.set('query5', JSON.stringify(top10Cities))
-    console.log(top10Cities.length)
+    await clientRedis.set('query5', JSON.stringify(top10Cities))
+    console.log(top10Cities.length, 'in router')
     return res.status(200).json({status : 'success', data : top10Cities})
   }
   catch(error)
